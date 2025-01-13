@@ -18,16 +18,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td><a href="{{ route('quizzes.show') }}">問題1問題1問題1</a></td>
-                    <td><button type="button" class="delete-quiz btn btn-danger btn-sm">削除</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td><a href="{{ route('quizzes.show') }}">問題2問題2問題2</a></td>
-                    <td><button type="button" class="delete-quiz btn btn-danger btn-sm">削除</button></td>
-                </tr>
+                @foreach ($quizzes as $quiz)
+                    <tr>
+                        <th scope="row">{{ $quiz->id }}</th>
+                        <td><a
+                                href="{{ route('quizzes.show', $quiz->id) }}">{{ Str::limit($quiz->question, 50, '...') }}</a>
+                        </td>
+                        <td><button type="button" class="delete-quiz btn btn-danger btn-sm"
+                                data-id="{{ $quiz->id }}">削除</button></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
