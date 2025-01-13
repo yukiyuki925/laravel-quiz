@@ -28,3 +28,6 @@ Route::get('quizzes/show', function () {
 Route::get('quizzes/create', function () {
     return view('quizzes.create');
 })->name('quizzes.create');
+
+Route::post('quizzes', 'App\Http\Controllers\QuizController@store')->name('quizzes.store');
+Route::delete('quizzes/{id}', 'App\Http\Controllers\QuizController@destroy')->name('quizzes.delete');
