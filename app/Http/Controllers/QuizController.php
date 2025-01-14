@@ -113,6 +113,14 @@ class QuizController extends Controller
     public function destroy($id)
     {
         //
-        return json_encode(['message' => 'ID:'.$id.'を削除']);
+        if (!Quiz::destroy($id)) {
+          // 400 Bad Request
+          return response()->json([
+            'message' => 'Failed to delete.',
+          ], 400);
+        }
+
+        // 204 No Content
+        return response()->noContent();
     }
 }
